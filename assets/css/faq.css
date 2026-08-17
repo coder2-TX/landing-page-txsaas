@@ -1,0 +1,193 @@
+/* FAQ — canonical unified section/card contract */
+
+#faq {
+  background: #F7F9FC !important;
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Same centered section-head structure used by Products / Process */
+.tx-faqHead {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.tx-faqHead .tx-h2 {
+  margin: 0 !important;
+}
+
+/* Exact shared pattern contract */
+.tx-faqHead__pattern {
+  display: block;
+  width: clamp(150px, 12vw, 200px);
+  margin-top: 16px;
+  line-height: 0;
+  pointer-events: none;
+}
+
+.tx-faqHead__pattern img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.tx-faqHead__sub {
+  max-width: 840px;
+  margin: 16px auto 0;
+  color: var(--tx-muted);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* Exact Products content-gap contract */
+.tx-faq {
+  max-width: 1040px;
+  margin: clamp(42px, 4.8vw, 62px) auto 0;
+  padding: 0;
+  display: grid;
+  gap: 20px;
+}
+
+/* Same lightweight white-card language as Products */
+.tx-faqItem {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #FFFFFF;
+  border: 0;
+  border-radius: 20px;
+  box-shadow: 0 8px 22px rgba(16, 32, 51, .04);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tx-faqItem:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 13px 28px rgba(16, 32, 51, .06);
+  }
+}
+
+/* FAQ question = EXACT same title typography as Services / Products */
+.tx-faqItem summary {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: clamp(22px, 2.2vw, 26px) clamp(22px, 2.4vw, 28px);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+  color: #102033 !important;
+  background: transparent;
+  border: 0;
+  font-size: var(--tx-item-title-size) !important;
+  font-weight: var(--tx-item-title-weight) !important;
+  line-height: var(--tx-item-title-line-height) !important;
+  text-align: start;
+}
+
+.tx-faqItem summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Remove the old cloud icon completely */
+.tx-faqItem summary::before {
+  content: none !important;
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  flex: 0 0 0 !important;
+  background: none !important;
+  -webkit-mask: none !important;
+  mask: none !important;
+  box-shadow: none !important;
+}
+
+/* Minimal functional indicator — no inner card */
+.tx-faqItem summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  margin-inline-start: auto;
+  color: #4274B6;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1;
+  transform: none;
+  transition: transform 180ms ease;
+}
+
+.tx-faqItem[open] summary::after {
+  content: "−";
+}
+
+/* FAQ answer = EXACT same body typography as Services / Products */
+.tx-faqItem__a {
+  margin: 0;
+  padding: 0 clamp(22px, 2.4vw, 28px) clamp(22px, 2.4vw, 26px);
+  color: var(--tx-muted) !important;
+  background: transparent;
+  border: 0;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  line-height: 1.65 !important;
+}
+
+.tx-faqItem[open] .tx-faqItem__a {
+  padding-top: 0;
+  border-top: 0;
+}
+
+/* Tablet = exact Products list spacing */
+@media (max-width: 980px) {
+  .tx-faq {
+    margin-top: 40px;
+    gap: 18px;
+  }
+}
+
+/* Mobile = same section pattern/card spacing system */
+@media (max-width: 640px) {
+  .tx-faqHead__pattern {
+    width: 160px;
+    margin-top: 16px;
+  }
+
+  .tx-faq {
+    margin-top: 34px;
+    gap: 16px;
+  }
+
+  .tx-faqItem {
+    border-radius: 18px;
+  }
+
+  .tx-faqItem summary {
+    padding: 20px;
+    gap: 14px;
+  }
+
+  .tx-faqItem__a {
+    padding: 0 20px 20px;
+  }
+
+  .tx-faqItem summary::after {
+    font-size: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tx-faqItem,
+  .tx-faqItem summary::after {
+    transition: none;
+  }
+}
