@@ -92,14 +92,17 @@
       const data = new FormData(form);
       name = (data.get("name") || "").toString().trim();
       email = (data.get("email") || "").toString().trim();
-      typeVal = (data.get("type") || "").toString().trim();
-      msg = (data.get("msg") || "").toString().trim();
+      typeVal = (data.get("project_type") || "").toString().trim();
+      msg = (data.get("description") || "").toString().trim();
 
       typeLabel = typeVal;
-      const typeSelect = document.getElementById("type");
-      if (typeSelect && typeSelect.options) {
-        const opt = Array.from(typeSelect.options).find((o) => o.value === typeVal);
-        if (opt && opt.textContent) typeLabel = opt.textContent.trim();
+
+      const typeLabelEl = form.querySelector(
+        "[data-tx-contact-select-value]"
+      );
+
+      if (typeLabelEl && typeLabelEl.textContent) {
+        typeLabel = typeLabelEl.textContent.trim();
       }
 
       return { name, email, typeVal, typeLabel, msg };
@@ -143,11 +146,13 @@
     }
 
     // ==========================
-    // WhatsApp button (dynamic)
+    const WHATSAPP_PHONE = "967781300268";
+
+    // WhatsApp button
     // ==========================
     if (waBtn) {
       waBtn.addEventListener("click", (e) => {
-        const phone = (waBtn.dataset.waPhone || "").toString().trim();
+        const phone = WHATSAPP_PHONE;
         const text = (waBtn.dataset.waText || "").toString().trim();
 
         // إذا ما في رقم من الداتا → خلّي href يشتغل طبيعي
@@ -156,11 +161,10 @@
         e.preventDefault();
 
         const msg = text || "مرحباً، أريد عرض سعر لمشروع برمجي (TX-SaaS).";
-        const url = `https://api.whatsapp.com/send?phone=${encodeURIComponent(
-          phone
-        )}&text=${encodeURIComponent(msg)}`;
+        const url =
+          `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
 
-        window.open(url, "_blank", "noopener,noreferrer");
+        window.location.href = url;
       });
     }
 
@@ -173,20 +177,25 @@
     // ==========================
     // Form submit -> Send to WhatsApp
     // ==========================
-    if (form && statusEl) {
+    if (form) {
       form.addEventListener("submit", (e) => {
         e.preventDefault();
 
         const { name, email, typeVal, typeLabel, msg } = getFormValues();
 
         if (!name || !email || !typeVal || !msg) {
-          statusEl.textContent = "فضلاً املأ كل الحقول.";
+          if (statusEl) {
+            statusEl.textContent = "فضلاً املأ كل الحقول.";
+          } else {
+            window.alert("فضلاً املأ كل الحقول.");
+          }
+
           return;
         }
 
-        const phone = (waBtn?.dataset?.waPhone || "").toString().trim();
+        const phone = WHATSAPP_PHONE;
         if (!phone) {
-          statusEl.textContent = "رقم الواتساب غير مضبوط في لوحة التحكم.";
+          if (statusEl) statusEl.textContent = "تعذر تجهيز رقم الواتساب.";
           return;
         }
 
@@ -197,14 +206,15 @@
           `نوع المشروع: ${typeLabel}\n` +
           `الوصف: ${msg}`;
 
-        const url = `https://api.whatsapp.com/send?phone=${encodeURIComponent(
-          phone
-        )}&text=${encodeURIComponent(composed)}`;
+        const url =
+          `https://wa.me/${phone}?text=${encodeURIComponent(composed)}`;
 
-        window.open(url, "_blank", "noopener,noreferrer");
+        if (statusEl) {
+          statusEl.textContent =
+            "تم تجهيز رسالتك للواتساب. أكمل الإرسال داخل واتساب.";
+        }
 
-        statusEl.textContent = "تم تجهيز رسالتك للواتساب. أكمل الإرسال داخل واتساب.";
-        form.reset();
+        window.location.href = url;
       });
     }
 
