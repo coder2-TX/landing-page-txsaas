@@ -1518,3 +1518,402 @@
 }
 
 /* TX_SITES_TITLE_CENTER_FIX_V2_END */
+
+/* TX_ECOMMERCE_EXACT_LAYOUT_V3_START */
+
+
+/* =========================================================
+   OUTER AREA
+   Keep the already-correct showcase width and container.
+   ========================================================= */
+
+.tx-ecommerceContainer {
+    margin-top: 0 !important;
+}
+
+.tx-ecommerceShowcase {
+    width: 100% !important;
+}
+
+
+/* =========================================================
+   STORE CARD
+   SAME SIZE as website image cards
+   (because it still uses .tx-sitePreview)
+   but visually styled like product cards.
+   ========================================================= */
+
+.tx-sitePreview.tx-storeCard {
+    position: relative !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    box-sizing: border-box !important;
+    padding: clamp(18px, 1.7vw, 24px) !important;
+
+    background: #FFFFFF !important;
+
+    box-shadow:
+        0 8px 22px rgba(16, 32, 51, .04) !important;
+
+    border: 0 !important;
+
+    text-decoration: none !important;
+
+    overflow: hidden !important;
+    isolation: isolate !important;
+
+    transform: none !important;
+}
+
+
+/* =========================================================
+   CENTERED SMALL LOGO
+   ========================================================= */
+
+.tx-sitePreview.tx-storeCard > .tx-storeCard__logo,
+.tx-sitePreview.tx-storeCard > img.tx-storeCard__logo {
+    position: relative !important;
+    z-index: 1 !important;
+
+    display: block !important;
+
+    width: 58% !important;
+    height: auto !important;
+
+    max-width: 205px !important;
+    max-height: 96px !important;
+
+    margin: 0 auto !important;
+    padding: 0 !important;
+
+    object-fit: contain !important;
+    object-position: center !important;
+
+    background: transparent !important;
+
+    border: 0 !important;
+    border-radius: 0 !important;
+
+    box-shadow: none !important;
+
+    filter: none !important;
+    -webkit-filter: none !important;
+
+    transform: none !important;
+}
+
+
+/* =========================================================
+   PRODUCT-CARD ARROW
+   Keep current approved arrow / shadow / gradient / position.
+   ========================================================= */
+
+.tx-sitePreview.tx-storeCard > .tx-productCard__footer {
+    position: absolute !important;
+    z-index: 7 !important;
+}
+
+
+/* =========================================================
+   HOVER
+   Card and logo stay still.
+   Only the arrow animation moves.
+   ========================================================= */
+
+@media (hover: hover) and (pointer: fine) {
+
+    .tx-sitePreview.tx-storeCard:hover,
+    .tx-sitePreview.tx-storeCard:focus-visible {
+        transform: none !important;
+
+        box-shadow:
+            0 8px 22px rgba(16, 32, 51, .04) !important;
+    }
+
+    .tx-sitePreview.tx-storeCard:hover > .tx-storeCard__logo,
+    .tx-sitePreview.tx-storeCard:focus-visible > .tx-storeCard__logo,
+    .tx-sitePreview.tx-storeCard:hover > img.tx-storeCard__logo,
+    .tx-sitePreview.tx-storeCard:focus-visible > img.tx-storeCard__logo {
+        transform: none !important;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   Keep same website-card size.
+   Only scale the logo inside it.
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+    .tx-sitePreview.tx-storeCard {
+        padding: 16px !important;
+    }
+
+    .tx-sitePreview.tx-storeCard > .tx-storeCard__logo,
+    .tx-sitePreview.tx-storeCard > img.tx-storeCard__logo {
+        width: 60% !important;
+        max-width: 150px !important;
+        max-height: 78px !important;
+    }
+}
+
+
+/* TX_ECOMMERCE_EXACT_LAYOUT_V3_END */
+
+/* TX_ECOMMERCE_CARD_VISUAL_V4_START */
+
+/* =========================================================
+   ECOMMERCE CARDS
+   Keep SAME size as website-image cards,
+   but make the card itself clearly visible.
+   ========================================================= */
+
+.tx-ecommerceShowcase .tx-sitePreview.tx-storeCard {
+    position: relative !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    box-sizing: border-box !important;
+    padding: clamp(18px, 1.7vw, 24px) !important;
+
+    background: #F5F5F5 !important;
+    background-image: none !important;
+
+    border: 0 !important;
+    border-radius: 20px !important;
+
+    box-shadow:
+        0 8px 22px rgba(16, 32, 51, .04) !important;
+
+    overflow: hidden !important;
+    isolation: isolate !important;
+
+    text-decoration: none !important;
+    transform: none !important;
+}
+
+
+/* =========================================================
+   SMALL CENTERED LOGO
+   ========================================================= */
+
+.tx-ecommerceShowcase .tx-sitePreview.tx-storeCard > .tx-storeCard__logo,
+.tx-ecommerceShowcase .tx-sitePreview.tx-storeCard > img.tx-storeCard__logo {
+    position: relative !important;
+    z-index: 1 !important;
+
+    display: block !important;
+
+    width: 56% !important;
+    height: auto !important;
+
+    max-width: 185px !important;
+    max-height: 88px !important;
+
+    margin: 0 auto !important;
+    padding: 0 !important;
+
+    object-fit: contain !important;
+    object-position: center !important;
+
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+
+    box-shadow: none !important;
+
+    filter: none !important;
+    -webkit-filter: none !important;
+
+    transform: none !important;
+}
+
+
+/* =========================================================
+   PRODUCT CARD ARROW
+   Keep the exact same arrow / gradient / arrow-shadow
+   already approved in product cards.
+   Just ensure it sits above the card and clips correctly.
+   ========================================================= */
+
+.tx-ecommerceShowcase .tx-sitePreview.tx-storeCard > .tx-productCard__footer {
+    position: absolute !important;
+    z-index: 7 !important;
+}
+
+.tx-ecommerceShowcase .tx-sitePreview.tx-storeCard > .tx-productCard__footer,
+.tx-ecommerceShowcase .tx-sitePreview.tx-storeCard > .tx-productCard__footer .tx-productCard__arrow {
+    pointer-events: none !important;
+}
+
+
+/* =========================================================
+   HOVER
+   Card and logo stay fixed.
+   Only the existing arrow animation moves.
+   ========================================================= */
+
+@media (hover: hover) and (pointer: fine) {
+
+    .tx-ecommerceShowcase .tx-sitePreview.tx-storeCard:hover,
+    .tx-ecommerceShowcase .tx-sitePreview.tx-storeCard:focus-visible {
+        transform: none !important;
+        box-shadow:
+            0 8px 22px rgba(16, 32, 51, .04) !important;
+    }
+
+    .tx-ecommerceShowcase .tx-sitePreview.tx-storeCard:hover > .tx-storeCard__logo,
+    .tx-ecommerceShowcase .tx-sitePreview.tx-storeCard:focus-visible > .tx-storeCard__logo,
+    .tx-ecommerceShowcase .tx-sitePreview.tx-storeCard:hover > img.tx-storeCard__logo,
+    .tx-ecommerceShowcase .tx-sitePreview.tx-storeCard:focus-visible > img.tx-storeCard__logo {
+        transform: none !important;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   Keep card size inherited from tx-sitePreview.
+   Only reduce logo size slightly inside it.
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+    .tx-ecommerceShowcase .tx-sitePreview.tx-storeCard {
+        padding: 16px !important;
+    }
+
+    .tx-ecommerceShowcase .tx-sitePreview.tx-storeCard > .tx-storeCard__logo,
+    .tx-ecommerceShowcase .tx-sitePreview.tx-storeCard > img.tx-storeCard__logo {
+        width: 58% !important;
+        max-width: 145px !important;
+        max-height: 74px !important;
+    }
+}
+
+/* TX_ECOMMERCE_CARD_VISUAL_V4_END */
+
+/* TX_ECOMMERCE_ARROW_FINAL_POSITION_V7_START */
+
+/*
+ * Ecommerce marquee is LTR internally.
+ * Product cards are RTL.
+ *
+ * Therefore ecommerce must use an explicit PHYSICAL LEFT corner,
+ * and the physical declaration must come AFTER logical resets.
+ */
+
+.tx-ecommerceShowcase
+.tx-sitePreview.tx-storeCard
+> .tx-productCard__footer {
+
+    position: absolute !important;
+
+    top: 0 !important;
+    bottom: auto !important;
+
+    /*
+     * Reset logical positioning FIRST.
+     */
+    inset-inline-start: auto !important;
+    inset-inline-end: auto !important;
+
+    /*
+     * Then force the actual physical position LAST.
+     * These declarations must remain after the logical ones.
+     */
+    right: auto !important;
+    left: 0 !important;
+
+    /*
+     * Exactly the same corner dimensions as Product cards.
+     */
+    width: clamp(112px, 34%, 184px) !important;
+    height: clamp(78px, 28%, 124px) !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    z-index: 8 !important;
+
+    /*
+     * Restore the same directional context as normal Product cards.
+     */
+    direction: rtl !important;
+
+    pointer-events: none !important;
+    overflow: visible !important;
+}
+
+
+/*
+ * Reproduce the exact Product-arrow internal geometry.
+ * The gradient/shadow themselves are NOT recreated here;
+ * they continue to come from .tx-productCard__arrow.
+ */
+.tx-ecommerceShowcase
+.tx-sitePreview.tx-storeCard
+> .tx-productCard__footer
+> .tx-productCard__arrow {
+
+    position: relative !important;
+
+    top: auto !important;
+
+    inset-inline-start: auto !important;
+    inset-inline-end: auto !important;
+
+    right: auto !important;
+    left: auto !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: flex-end !important;
+
+    padding: 14px 16px !important;
+
+    /*
+     * Product cards normally inherit RTL.
+     * The ecommerce marquee would otherwise force LTR.
+     */
+    direction: rtl !important;
+
+    box-sizing: border-box !important;
+
+    pointer-events: none !important;
+}
+
+
+/*
+ * Mobile uses the exact same Product-card corner dimensions.
+ */
+@media (max-width: 640px) {
+
+    .tx-ecommerceShowcase
+    .tx-sitePreview.tx-storeCard
+    > .tx-productCard__footer {
+
+        width: 104px !important;
+        height: 76px !important;
+    }
+
+    .tx-ecommerceShowcase
+    .tx-sitePreview.tx-storeCard
+    > .tx-productCard__footer
+    > .tx-productCard__arrow {
+
+        padding: 10px 11px !important;
+    }
+}
+
+/* TX_ECOMMERCE_ARROW_FINAL_POSITION_V7_END */
