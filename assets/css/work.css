@@ -1461,3 +1461,60 @@
 }
 
 /* TX_SITE_ARROW_UNIFIED_TOP_V3_END */
+
+/* TX_SITES_SHOWCASE_TITLE_V1_START */
+
+/*
+ * Website showcase heading.
+ * Uses exactly the same typography tokens as product names.
+ */
+.tx-sitesShowcase__title {
+    width: 100%;
+    margin: 0 0 clamp(16px, 1.6vw, 20px) !important;
+
+    color: #102033 !important;
+
+    font-size: var(--tx-item-title-size) !important;
+    font-weight: var(--tx-item-title-weight) !important;
+    line-height: var(--tx-item-title-line-height) !important;
+
+    text-align: center !important;
+}
+
+/*
+ * Keep comfortable spacing on small screens without
+ * changing the marquee/card dimensions.
+ */
+@media (max-width: 640px) {
+    .tx-sitesShowcase__title {
+        margin-bottom: 14px !important;
+    }
+}
+
+/* TX_SITES_SHOWCASE_TITLE_V1_END */
+
+/* TX_SITES_TITLE_CENTER_FIX_V2_START */
+
+/* Center "المواقع الإلكترونية" across the whole white showcase card */
+.tx-sitesShowcase__title {
+    display: block !important;
+
+    width: 100% !important;
+    max-width: none !important;
+
+    flex: 0 0 100% !important;
+    align-self: stretch !important;
+
+    grid-column: 1 / -1 !important;
+    justify-self: stretch !important;
+
+    margin-inline: auto !important;
+    padding-inline: 24px !important;
+
+    box-sizing: border-box !important;
+
+    text-align: center !important;
+    direction: rtl !important;
+}
+
+/* TX_SITES_TITLE_CENTER_FIX_V2_END */
