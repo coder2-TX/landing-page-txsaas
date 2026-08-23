@@ -453,3 +453,1011 @@
     transition: none;
   }
 }
+
+
+/* Product cards — identity image + details arrow. Keeps approved card layout intact. */
+.tx-productCard__logoWrap {
+  width: 100%;
+  min-height: 112px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 8px;
+  padding: 12px 14px;
+  background: #F8FAFD;
+  border: 1px solid #EDF1F6;
+  border-radius: 16px;
+}
+
+.tx-productCard__logo {
+  width: 100%;
+  max-width: 210px;
+  height: 86px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.tx-productCard__footer {
+  width: 100%;
+  margin-top: auto;
+  padding-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tx-productCard__arrow {
+  width: 42px;
+  height: 42px;
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 42px;
+  color: #FFFFFF !important;
+  background: #4274B6;
+  border-radius: 50%;
+  box-shadow: 0 8px 18px rgba(66, 116, 182, .20);
+  font-size: 23px;
+  font-weight: 700;
+  line-height: 1;
+  transition: transform 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tx-productCard__arrow:hover,
+  .tx-productCard__arrow:focus-visible {
+    transform: translateX(-3px);
+    background: #35629D;
+    box-shadow: 0 10px 22px rgba(66, 116, 182, .26);
+    outline: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .tx-productCard__logoWrap { min-height: 104px; }
+  .tx-productCard__logo { height: 78px; max-width: 190px; }
+  .tx-productCard__footer { justify-content: center; }
+}
+
+/* ===== Product + website corner action — mirrors supplied works-grid indicator ===== */
+/* Keep the approved product cards compact. The action is now part of the top
+   corner itself — no circle, no button box, no visible container. */
+.tx-productCard {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(22px, 2vw, 26px);
+}
+
+.tx-productCard__logoWrap {
+  width: 100%;
+  min-height: 92px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 8px;
+  padding: 7px 10px 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.tx-productCard__logo {
+  width: 100%;
+  max-width: 200px;
+  height: 76px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.tx-productCard__footer {
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  inset-inline-end: 0;
+  width: auto;
+  margin: 0;
+  padding: 0;
+}
+
+/* Exact visual idea from the supplied .works-grid__action block. */
+.tx-productCard__arrow,
+.tx-siteCornerAction {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  inset-inline-end: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  width: clamp(112px, 34%, 184px);
+  height: clamp(78px, 28%, 124px);
+  padding: 14px 16px;
+  box-sizing: border-box;
+  color: #fff !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  opacity: .97;
+  background:
+    radial-gradient(
+      ellipse 105% 96% at 100% 0%,
+      rgba(66,116,182,.82) 0%,
+      rgba(66,116,182,.56) 30%,
+      rgba(66,116,182,.24) 54%,
+      rgba(66,116,182,0) 79%
+    ) !important;
+  transition: opacity .3s ease;
+  overflow: visible;
+}
+
+[dir="rtl"] .tx-productCard__arrow,
+[dir="rtl"] .tx-siteCornerAction {
+  background:
+    radial-gradient(
+      ellipse 105% 96% at 0% 0%,
+      rgba(66,116,182,.82) 0%,
+      rgba(66,116,182,.56) 30%,
+      rgba(66,116,182,.24) 54%,
+      rgba(66,116,182,0) 79%
+    ) !important;
+}
+
+/* Product arrow is the link itself; stretch it across the gradient corner. */
+.tx-productCard__arrow {
+  position: relative;
+  inset: auto;
+  flex: none;
+  text-decoration: none;
+}
+
+.tx-productCard__arrowIcon {
+  display: none !important;
+}
+
+.tx-cornerAction__icons {
+  position: relative;
+  display: block;
+  width: 22px;
+  height: 20px;
+  overflow: hidden;
+  direction: ltr;
+  filter: drop-shadow(0 2px 5px rgba(0,0,0,.32));
+}
+
+.tx-cornerAction__icons::before,
+.tx-cornerAction__icons::after {
+  content: "→";
+  position: absolute;
+  top: 50%;
+  color: currentColor;
+  font-size: 1.45rem;
+  font-weight: 400;
+  line-height: 1;
+  transition: transform .32s cubic-bezier(.22,.61,.36,1);
+}
+
+.tx-cornerAction__icons::before {
+  left: 0;
+  transform: translate(0,-52%) rotate(-45deg);
+}
+
+.tx-cornerAction__icons::after {
+  left: -28px;
+  transform: translate(0,-52%) rotate(-45deg);
+}
+
+[dir="rtl"] .tx-cornerAction__icons {
+  transform: scaleX(-1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tx-productCard:hover .tx-productCard__arrow,
+  .tx-productCard__arrow:focus-visible,
+  .tx-sitePreview:hover .tx-siteCornerAction,
+  .tx-sitePreview:focus-visible .tx-siteCornerAction {
+    opacity: 1;
+  }
+
+  .tx-productCard:hover .tx-cornerAction__icons::before,
+  .tx-productCard__arrow:focus-visible .tx-cornerAction__icons::before,
+  .tx-sitePreview:hover .tx-cornerAction__icons::before,
+  .tx-sitePreview:focus-visible .tx-cornerAction__icons::before {
+    transform: translate(28px,-52%) rotate(-45deg);
+  }
+
+  .tx-productCard:hover .tx-cornerAction__icons::after,
+  .tx-productCard__arrow:focus-visible .tx-cornerAction__icons::after,
+  .tx-sitePreview:hover .tx-cornerAction__icons::after,
+  .tx-sitePreview:focus-visible .tx-cornerAction__icons::after {
+    transform: translate(28px,-52%) rotate(-45deg);
+  }
+}
+
+/* Website slider: the image stays the card; only the top-corner gradient/action
+   is added. No separate button container. */
+.tx-sitePreview {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.tx-siteCornerAction {
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .tx-productCard__logoWrap {
+    min-height: 86px;
+  }
+
+  .tx-productCard__logo {
+    max-width: 182px;
+    height: 70px;
+  }
+
+  .tx-productCard__arrow,
+  .tx-siteCornerAction {
+    width: 104px;
+    height: 76px;
+    padding: 10px 11px;
+  }
+
+  .tx-cornerAction__icons {
+    width: 19px;
+    height: 18px;
+  }
+
+  .tx-cornerAction__icons::before,
+  .tx-cornerAction__icons::after {
+    font-size: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tx-productCard__arrow,
+  .tx-siteCornerAction,
+  .tx-cornerAction__icons::before,
+  .tx-cornerAction__icons::after {
+    transition: none;
+  }
+}
+
+
+/* ===== Smooth corner veil + exact corner alignment (final pass) ===== */
+/*
+ * Keep the arrow in the same top corner, but replace the previous radial patch
+ * with a soft veil: strongest at the very top, then progressively fading down
+ * and sideways until it becomes fully transparent. No visible button/container.
+ */
+.tx-productCard__arrow,
+.tx-siteCornerAction {
+  background: linear-gradient(
+    180deg,
+    rgba(66,116,182,.66) 0%,
+    rgba(66,116,182,.50) 18%,
+    rgba(66,116,182,.31) 38%,
+    rgba(66,116,182,.16) 57%,
+    rgba(66,116,182,.06) 72%,
+    rgba(66,116,182,0) 100%
+  ) !important;
+  -webkit-mask-image: linear-gradient(
+    to left,
+    #000 0%,
+    rgba(0,0,0,.96) 24%,
+    rgba(0,0,0,.72) 48%,
+    rgba(0,0,0,.34) 70%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to left,
+    #000 0%,
+    rgba(0,0,0,.96) 24%,
+    rgba(0,0,0,.72) 48%,
+    rgba(0,0,0,.34) 70%,
+    transparent 100%
+  );
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+/* Arabic pages: both system cards and website images use the exact same
+   top-left corner. The marquee is LTR internally, so the website action must
+   be positioned explicitly instead of relying on logical inline-end. */
+[dir="rtl"] .tx-productCard__footer {
+  left: 0;
+  right: auto;
+}
+
+[dir="rtl"] .tx-productCard__arrow,
+[dir="rtl"] .tx-siteCornerAction {
+  background: linear-gradient(
+    180deg,
+    rgba(66,116,182,.66) 0%,
+    rgba(66,116,182,.50) 18%,
+    rgba(66,116,182,.31) 38%,
+    rgba(66,116,182,.16) 57%,
+    rgba(66,116,182,.06) 72%,
+    rgba(66,116,182,0) 100%
+  ) !important;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    #000 0%,
+    rgba(0,0,0,.96) 24%,
+    rgba(0,0,0,.72) 48%,
+    rgba(0,0,0,.34) 70%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    #000 0%,
+    rgba(0,0,0,.96) 24%,
+    rgba(0,0,0,.72) 48%,
+    rgba(0,0,0,.34) 70%,
+    transparent 100%
+  );
+}
+
+[dir="rtl"] .tx-siteCornerAction {
+  top: 0;
+  left: 0;
+  right: auto;
+  inset-inline-start: auto;
+  inset-inline-end: auto;
+}
+
+/* Retain the white rising arrow and the two-arrow hover motion exactly. */
+.tx-productCard__arrow,
+.tx-siteCornerAction,
+.tx-cornerAction__icons::before,
+.tx-cornerAction__icons::after {
+  color: #fff !important;
+}
+
+
+/* ===== Final user-requested corner treatment ===== */
+/* 1) Product cards: use the original supplied corner-gradient behavior exactly. */
+.tx-productCard__footer {
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  left: 0;
+  right: auto;
+  inset-inline-start: 0;
+  inset-inline-end: auto;
+  width: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.tx-productCard__arrow {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  right: auto;
+  inset-inline-start: 0;
+  inset-inline-end: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  width: clamp(112px, 34%, 184px);
+  height: clamp(78px, 28%, 124px);
+  padding: 14px 16px;
+  box-sizing: border-box;
+  color: #fff !important;
+  text-decoration: none;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  opacity: .97;
+  overflow: visible;
+  background:
+    radial-gradient(
+      ellipse 105% 96% at 0% 0%,
+      rgba(66,116,182,.82) 0%,
+      rgba(66,116,182,.56) 30%,
+      rgba(66,116,182,.24) 54%,
+      rgba(66,116,182,0) 79%
+    ) !important;
+  -webkit-mask: none !important;
+  mask: none !important;
+  transition: opacity .3s ease;
+}
+
+/* 2) Website preview images: same corner position, but only a white arrow,
+      with no gradient/veil/background behind it. */
+.tx-sitePreview {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.tx-siteCornerAction {
+  position: absolute;
+  z-index: 3;
+  top: 14px;
+  left: 16px;
+  right: auto;
+  inset-inline-start: auto;
+  inset-inline-end: auto;
+  display: block;
+  width: 22px;
+  height: 20px;
+  padding: 0;
+  box-sizing: border-box;
+  color: #fff !important;
+  background: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  opacity: .97;
+  overflow: visible;
+  pointer-events: none;
+  -webkit-mask: none !important;
+  mask: none !important;
+  transition: opacity .3s ease;
+}
+
+[dir="rtl"] .tx-siteCornerAction {
+  left: 16px;
+  right: auto;
+  inset-inline-start: auto;
+  inset-inline-end: auto;
+}
+
+.tx-productCard__arrowIcon {
+  display: none !important;
+}
+
+.tx-cornerAction__icons {
+  position: relative;
+  display: block;
+  width: 22px;
+  height: 20px;
+  overflow: hidden;
+  direction: ltr;
+  filter: drop-shadow(0 2px 5px rgba(0,0,0,.32));
+}
+
+.tx-cornerAction__icons::before,
+.tx-cornerAction__icons::after {
+  content: "→";
+  position: absolute;
+  top: 50%;
+  color: currentColor;
+  font-size: 1.45rem;
+  font-weight: 400;
+  line-height: 1;
+  transition: transform .32s cubic-bezier(.22,.61,.36,1);
+}
+
+.tx-cornerAction__icons::before {
+  left: 0;
+  transform: translate(0,-52%) rotate(-45deg);
+}
+
+.tx-cornerAction__icons::after {
+  left: -28px;
+  transform: translate(0,-52%) rotate(-45deg);
+}
+
+[dir="rtl"] .tx-cornerAction__icons {
+  transform: scaleX(-1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tx-productCard:hover .tx-productCard__arrow,
+  .tx-productCard__arrow:focus-visible,
+  .tx-sitePreview:hover .tx-siteCornerAction,
+  .tx-sitePreview:focus-visible .tx-siteCornerAction {
+    opacity: 1;
+  }
+
+  .tx-productCard:hover .tx-cornerAction__icons::before,
+  .tx-productCard__arrow:focus-visible .tx-cornerAction__icons::before,
+  .tx-sitePreview:hover .tx-cornerAction__icons::before,
+  .tx-sitePreview:focus-visible .tx-cornerAction__icons::before {
+    transform: translate(28px,-52%) rotate(-45deg);
+  }
+
+  .tx-productCard:hover .tx-cornerAction__icons::after,
+  .tx-productCard__arrow:focus-visible .tx-cornerAction__icons::after,
+  .tx-sitePreview:hover .tx-cornerAction__icons::after,
+  .tx-sitePreview:focus-visible .tx-cornerAction__icons::after {
+    transform: translate(28px,-52%) rotate(-45deg);
+  }
+}
+
+/* 3) Safety pass for file:// icon rendering so icons do not disappear again. */
+.tx-call-icon,
+.tx-contactPage__emailIcon,
+.tx-contactPage__locationIcon,
+.tx-floating-contact__icon,
+.tx-drawer__closeIcon,
+.tx-contactForm__submitIcon,
+.tx-contactPage__selectIcon,
+.tx-burger::before {
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: contain !important;
+  display: inline-block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+@media (max-width: 640px) {
+  .tx-productCard__arrow {
+    width: 104px;
+    height: 76px;
+    padding: 10px 11px;
+  }
+
+  .tx-siteCornerAction {
+    top: 10px;
+    left: 12px;
+    width: 19px;
+    height: 18px;
+  }
+
+  [dir="rtl"] .tx-siteCornerAction {
+    left: 12px;
+  }
+
+  .tx-cornerAction__icons {
+    width: 19px;
+    height: 18px;
+  }
+
+  .tx-cornerAction__icons::before,
+  .tx-cornerAction__icons::after {
+    font-size: 1.25rem;
+  }
+}
+
+
+/* ===== Hotfix: restore product-card corner arrow and refine website-image arrow ===== */
+/* Product cards: make the gradient corner container explicit so it cannot collapse. */
+.tx-productCard__footer {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: auto !important;
+  inset-inline-start: 0 !important;
+  inset-inline-end: auto !important;
+  width: clamp(112px, 34%, 184px) !important;
+  height: clamp(78px, 28%, 124px) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  z-index: 6 !important;
+  pointer-events: none !important;
+  overflow: visible !important;
+}
+
+.tx-productCard__arrow {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  inset: auto !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: flex-end !important;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 14px 16px !important;
+  box-sizing: border-box !important;
+  color: #fff !important;
+  text-decoration: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  overflow: visible !important;
+  background:
+    radial-gradient(
+      ellipse 105% 96% at 0% 0%,
+      rgba(66,116,182,.82) 0%,
+      rgba(66,116,182,.56) 30%,
+      rgba(66,116,182,.24) 54%,
+      rgba(66,116,182,0) 79%
+    ) !important;
+  -webkit-mask: none !important;
+  mask: none !important;
+}
+
+.tx-productCard__arrow .tx-cornerAction__icons {
+  filter: drop-shadow(0 2px 5px rgba(0,0,0,.32)) !important;
+}
+
+/* Website preview images: keep only a plain white arrow, slightly lower, no shadow. */
+.tx-siteCornerAction {
+  top: 20px !important;
+  left: 18px !important;
+  right: auto !important;
+  inset-inline-start: auto !important;
+  inset-inline-end: auto !important;
+  width: 22px !important;
+  height: 20px !important;
+  padding: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+[dir="rtl"] .tx-siteCornerAction {
+  left: 18px !important;
+  right: auto !important;
+}
+
+.tx-siteCornerAction .tx-cornerAction__icons {
+  filter: none !important;
+}
+
+@media (max-width: 640px) {
+  .tx-productCard__footer {
+    width: 104px !important;
+    height: 76px !important;
+  }
+
+  .tx-productCard__arrow {
+    padding: 10px 11px !important;
+  }
+
+  .tx-siteCornerAction {
+    top: 14px !important;
+    left: 12px !important;
+    width: 19px !important;
+    height: 18px !important;
+  }
+
+  [dir="rtl"] .tx-siteCornerAction {
+    left: 12px !important;
+  }
+}
+
+/* TX_PRODUCTS_CORNER_HOVER_FIX_V1_START */
+
+/* =========================================================
+   1. PRODUCT CARDS
+   Move corner action to the opposite side.
+   RTL = physical LEFT.
+   LTR = physical RIGHT.
+   ========================================================= */
+
+.tx-productCard__footer {
+  left: auto !important;
+  right: auto !important;
+
+  /* Opposite of the previous inline-start position */
+  inset-inline-start: auto !important;
+  inset-inline-end: 0 !important;
+}
+
+
+/* Softer blue corner veil behind the white arrow. */
+.tx-productCard__arrow {
+  background:
+    radial-gradient(
+      ellipse 105% 96% at 100% 0%,
+      rgba(66,116,182,.58) 0%,
+      rgba(66,116,182,.34) 30%,
+      rgba(66,116,182,.13) 54%,
+      rgba(66,116,182,0) 79%
+    ) !important;
+}
+
+
+/* Arabic / RTL:
+   gradient follows the arrow to the physical left corner. */
+[dir="rtl"] .tx-productCard__arrow {
+  background:
+    radial-gradient(
+      ellipse 105% 96% at 0% 0%,
+      rgba(66,116,182,.58) 0%,
+      rgba(66,116,182,.34) 30%,
+      rgba(66,116,182,.13) 54%,
+      rgba(66,116,182,0) 79%
+    ) !important;
+}
+
+
+/* Reduce only the tiny contrast shadow around the white arrow. */
+.tx-productCard__arrow .tx-cornerAction__icons {
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,.18)) !important;
+}
+
+
+/* =========================================================
+   2. WEBSITE IMAGE CARDS
+   Keep plain white arrow only.
+   Raise it slightly.
+   Absolutely no gradient or shadow.
+   ========================================================= */
+
+.tx-siteCornerAction {
+  top: 12px !important;
+
+  background: none !important;
+  background-image: none !important;
+
+  box-shadow: none !important;
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+.tx-siteCornerAction .tx-cornerAction__icons {
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+
+/* =========================================================
+   3. HOVER
+   Cards/images stay completely stationary.
+   Existing two-arrow animation remains untouched.
+   ========================================================= */
+
+@media (hover: hover) and (pointer: fine) {
+
+  .tx-productCard:hover {
+    transform: none !important;
+
+    /* Keep exactly the normal card shadow on hover. */
+    box-shadow:
+      0 8px 22px rgba(16,32,51,.04) !important;
+  }
+
+  .tx-sitePreview:hover {
+    transform: none !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .tx-sitePreview:hover img {
+    transform: none !important;
+  }
+}
+
+
+/* Slightly higher website arrow on phones too. */
+@media (max-width: 640px) {
+  .tx-siteCornerAction {
+    top: 8px !important;
+  }
+}
+
+/* TX_PRODUCTS_CORNER_HOVER_FIX_V1_END */
+
+/* TX_SITE_ARROW_NO_SHADOW_V1_START */
+
+/*
+ * Website slider arrows:
+ * pure white arrow only.
+ * No gradient, glow, drop-shadow, text-shadow or background.
+ * Product-card arrows remain unchanged.
+ */
+.tx-siteCornerAction {
+    background: none !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+    text-shadow: none !important;
+}
+
+.tx-siteCornerAction .tx-cornerAction__icons {
+    filter: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+.tx-siteCornerAction .tx-cornerAction__icons::before,
+.tx-siteCornerAction .tx-cornerAction__icons::after {
+    filter: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+/* TX_SITE_ARROW_NO_SHADOW_V1_END */
+
+/* TX_SITE_ARROW_PURE_WHITE_V2_START */
+
+/*
+ * Website slider:
+ * Keep ONLY the white animated arrow.
+ * Absolutely no blue veil, mask, glow, shadow or painted box.
+ */
+
+.tx-sitePreview .tx-siteCornerAction {
+    position: absolute !important;
+
+    top: 30px !important;
+    left: 8px !important;
+    right: auto !important;
+
+    inset: auto !important;
+    inset-inline-start: auto !important;
+    inset-inline-end: auto !important;
+
+    width: 22px !important;
+    height: 20px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    color: #fff !important;
+
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+
+    border: 0 !important;
+    outline: 0 !important;
+    border-radius: 0 !important;
+
+    box-shadow: none !important;
+    text-shadow: none !important;
+
+    filter: none !important;
+    -webkit-filter: none !important;
+
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+
+    -webkit-mask: none !important;
+    mask: none !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    mix-blend-mode: normal !important;
+    isolation: auto !important;
+
+    overflow: visible !important;
+    pointer-events: none !important;
+}
+
+
+/* RTL keeps exactly the same physical left position. */
+[dir="rtl"] .tx-sitePreview .tx-siteCornerAction {
+    left: 8px !important;
+    right: auto !important;
+}
+
+
+/* The tiny viewport that clips the two-arrow animation must itself be invisible. */
+.tx-sitePreview .tx-siteCornerAction .tx-cornerAction__icons {
+    position: relative !important;
+    display: block !important;
+
+    width: 22px !important;
+    height: 20px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+
+    border: 0 !important;
+    outline: 0 !important;
+    border-radius: 0 !important;
+
+    box-shadow: none !important;
+    text-shadow: none !important;
+
+    filter: none !important;
+    -webkit-filter: none !important;
+
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+
+    -webkit-mask: none !important;
+    mask: none !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+
+    overflow: hidden !important;
+}
+
+
+/* The actual arrows themselves: white glyph only. */
+.tx-sitePreview .tx-siteCornerAction .tx-cornerAction__icons::before,
+.tx-sitePreview .tx-siteCornerAction .tx-cornerAction__icons::after {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+
+    border: 0 !important;
+    outline: 0 !important;
+
+    box-shadow: none !important;
+    text-shadow: none !important;
+
+    filter: none !important;
+    -webkit-filter: none !important;
+
+    color: #fff !important;
+
+    opacity: 1 !important;
+}
+
+
+/* No hover styling is allowed to recreate a box behind the arrow. */
+@media (hover: hover) and (pointer: fine) {
+
+    .tx-sitePreview:hover .tx-siteCornerAction,
+    .tx-sitePreview:focus-visible .tx-siteCornerAction,
+    .tx-sitePreview:hover .tx-siteCornerAction .tx-cornerAction__icons,
+    .tx-sitePreview:focus-visible .tx-siteCornerAction .tx-cornerAction__icons {
+        background: transparent !important;
+        background-color: transparent !important;
+        background-image: none !important;
+
+        box-shadow: none !important;
+        text-shadow: none !important;
+
+        filter: none !important;
+        -webkit-filter: none !important;
+
+        -webkit-mask: none !important;
+        mask: none !important;
+        -webkit-mask-image: none !important;
+        mask-image: none !important;
+    }
+}
+
+
+@media (max-width: 640px) {
+
+    .tx-sitePreview .tx-siteCornerAction {
+        top: 22px !important;
+        left: 7px !important;
+
+        width: 19px !important;
+        height: 18px !important;
+    }
+
+    [dir="rtl"] .tx-sitePreview .tx-siteCornerAction {
+        left: 7px !important;
+    }
+
+    .tx-sitePreview .tx-siteCornerAction .tx-cornerAction__icons {
+        width: 19px !important;
+        height: 18px !important;
+    }
+}
+
+/* TX_SITE_ARROW_PURE_WHITE_V2_END */
+
+/* TX_SITE_ARROW_UNIFIED_TOP_V3_START */
+
+/*
+ * Website slider arrows:
+ * one fixed vertical position on ALL screen sizes.
+ * 6px from the physical top edge.
+ */
+.tx-sitePreview .tx-siteCornerAction,
+[dir="rtl"] .tx-sitePreview .tx-siteCornerAction {
+    top: 6px !important;
+    inset-block-start: 6px !important;
+    bottom: auto !important;
+    inset-block-end: auto !important;
+}
+
+/* Explicitly defeat every old mobile top override. */
+@media (max-width: 640px) {
+    .tx-sitePreview .tx-siteCornerAction,
+    [dir="rtl"] .tx-sitePreview .tx-siteCornerAction {
+        top: 6px !important;
+        inset-block-start: 6px !important;
+        bottom: auto !important;
+        inset-block-end: auto !important;
+    }
+}
+
+/* TX_SITE_ARROW_UNIFIED_TOP_V3_END */
